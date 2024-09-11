@@ -24,7 +24,7 @@ const CommentsModal = ({ isOpen, onClose, postId }) => {
         if (isOpen && postId) {
             setIsLoading(true);
             try {
-                const response = await axios.get(`http://blog.tourismofkashmir.com/api_comments.php?post_id=${postId}`);
+                const response = await axios.get(`https://blog.tourismofkashmir.com/api_comments.php?post_id=${postId}`);
                 setComments(response.data);
             } catch (error) {
                 console.error("There was an error fetching the comments:", error);
