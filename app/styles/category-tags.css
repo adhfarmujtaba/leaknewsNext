@@ -1,0 +1,91 @@
+.category-tags {
+    font-family: Arial, sans-serif;
+    display: flex;
+    gap: 10px; /* Add space between tags without affecting overflow */
+    overflow-x: auto;
+    padding: 10px 0;
+    margin-top: 46px;
+    background-color: #f8f9fa;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+.category-head{
+    z-index: 5;
+    position: relative;
+    overflow-x: auto;
+}
+.category-tags::-webkit-scrollbar {
+    display: none;
+}
+
+.category-tag {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 20px;
+    background: linear-gradient(145deg, #e6e6e6, #ffffff); /* Subtle gradient for depth */
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    white-space: nowrap;
+    color: #333;
+    font-size: 14px;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    text-decoration: none;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1); /* Deeper shadow for 3D effect */
+}
+
+.category-tag.active, .category-tag:hover {
+    background: #007bff; /* Example active/hover color - blue */
+    color: #ffffff; /* White text color */
+    box-shadow: 0 7px 20px rgba(0,0,0,0.2); /* Deeper shadow for emphasis */
+   /* transform: translateY(-4px); /* Lift effect */
+}
+/*
+.category-tag.active {
+   
+    transform: translateY(-4px) !important;
+}*/
+.category-tags-loading {
+    display: flex;
+    gap: 10px;
+    padding: 10px 0;
+    margin-top: 46px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.loading-tag {
+    background-color: #ddd;
+    border-radius: 25px;
+}
+
+/* Dark mode styles */
+@media (prefers-color-scheme: dark) {
+    /* Category tags */
+    .category-tags {
+        background-color: #333; /* Dark background color */
+        box-shadow: 0 2px 4px rgba(255, 255, 255, 0.1); /* Lighter shadow for contrast */
+    }
+
+    .category-tag {
+        background: linear-gradient(145deg, #555, #444); /* Darker gradient for depth */
+        color: #fff; /* Light text color */
+        box-shadow: 0 5px 15px rgba(255, 255, 255, 0.1); /* Lighter shadow for 3D effect */
+    }
+
+    .category-tag.active,
+    .category-tag:hover {
+        background: #0056b3; /* Dark blue for active/hover color in dark mode */
+        box-shadow: 0 7px 20px rgba(255, 255, 255, 0.2); /* Lighter shadow for emphasis */
+    }
+
+    /* Additional adjustments as needed for dark mode */
+    /* ... */
+}

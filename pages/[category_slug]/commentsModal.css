@@ -1,0 +1,298 @@
+/* Base Variables */
+:root {
+    --primary-color: #007bff;
+    --text-color: #333;
+    --bg-color: #fff;
+    --overlay-color: rgba(0, 0, 0, 0.6);
+    --modal-content-bg: #fff;
+    --border-color: #e2e2e2;
+    --loader-bg-color: #f8f8f8;
+    --button-bg-color: var(--primary-color);
+    --button-text-color: #fff;
+    --input-bg-color: #e9ecef;
+    --input-border-color: #ddd;
+    --comment-bg-color: #f0f2f5;
+    --model-footer-color:  #f7f7f7;
+    --font-family: 'Roboto', sans-serif;
+    --font-family-secondary: 'Open Sans', sans-serif; /* Additional font for variety */
+}
+@media (prefers-color-scheme: dark) {
+    :root {
+        --text-color: #fff; /* Change text color to white in dark mode */
+        --bg-color: #222; /* Change background color to dark gray */
+        --overlay-color: rgba(0, 0, 0, 0.8); /* Darken overlay color */
+        --modal-content-bg: #333; /* Darken modal content background */
+        --border-color: #444; /* Darken border color */
+        --loader-bg-color: #444; /* Darken loader background color */
+        --button-bg-color: #007bff; /* Change button background color in dark mode */
+        --input-bg-color: #444; /* Darken input background color */
+        --input-border-color: #666; /* Darken input border color */
+        --comment-bg-color: #444; /* Darken comment background color */
+        --model-footer-color:  #433f3f;
+    }
+    .modal-body{
+        background-color: var(--bg-color);
+        color: var(--text-color);
+        .modal-footer {
+            background-color: #444; /* Dark background color for the modal footer */
+            color: #fff; /* Light text color for the modal footer */
+          }
+    }
+}
+
+.modal {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end; /* Align items to the bottom */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--overlay-color);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.4s ease-in-out;
+    z-index: 90;
+}
+
+.modal-visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal-content {
+    z-index:9999;
+  position: relative;
+background-color: var(--bg-color);
+  margin: 0 auto;
+  padding: 0;
+  border-radius: 20px 20px 0 0;
+  width: 100%;
+  max-width: 600px;
+ /* box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.2);*/
+  overflow: hidden;
+}
+
+.modal-visible .modal-content {
+    transform: translateY(0); /* Slide up into view */
+}
+
+/* Adjustments for smaller screens */
+@media (max-width: 768px) {
+    .modal-content {
+        max-width: 100%; /* Full width on smaller screens */
+        border-radius: 15px 15px 0 0; /* Adjust border radius for smaller screens */
+    }
+}
+
+
+.modal-header {
+    padding: 15px;
+    background: var(--bg-color);
+    border-bottom: 1px solid var(--border-color);
+    font-family: var(--font-family-secondary);
+}
+
+.modal-header {
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+}
+
+.modal-footer {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    background-color:var(--model-footer-color);
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+.modal-header h2 {
+    margin: 0;
+    font-size: 22px;
+    color: var(--text-color);
+    font-weight: normal;
+}
+
+.close {
+    cursor: pointer;
+    font-size: 24px;
+    color: var(--text-color);
+    margin-left: auto;
+    transition: color 0.2s;
+}
+
+.close:hover {
+    color: darken(var(--text-color), 15%);
+}
+
+.comment {
+    display: flex;
+    align-items: flex-start; /* Align items to the top */
+    margin-bottom: 15px;
+    font-family: var(--font-family);
+}
+
+.comment-avatar img {
+    width: 40px;
+    height: 40px;
+    border-radius: 20px;
+    object-fit: cover;
+    margin-right: 15px;
+}
+
+.comment-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column; /* Organize the content in a column */
+}
+
+.comment-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Space between author and date */
+    margin-bottom: 8px; /* Space between header and comment text */
+}
+.comment-author {
+    font-weight: bold;
+    color: var(--text-color);
+    font-size: 16px;
+    margin-right: 10px;
+}
+
+.comment-date {
+    font-size: 14px;
+    color: #777;
+    margin-left: auto; /* Push to the right */
+    white-space: nowrap; /* Prevent wrapping */
+}
+
+.comment-text {
+    margin-top: 5px;
+    line-height: 1.5;
+    color: #555;
+    font-size: 14px;
+}
+
+.read-more-link {
+    color: var(--primary-color);
+    cursor: pointer;
+    margin-left: 5px;
+    text-decoration: none;
+}
+
+.read-more-link:hover {
+    text-decoration: none;
+}
+
+.comment-input, .submit-comment-btn {
+    padding: 10px 15px;
+    border-radius: 20px;
+}
+
+.comment-input {
+    flex: 1;
+    border: 1px solid var(--input-border-color);
+    background-color: var(--input-bg-color);
+    margin-right: 10px;
+    font-size: 14px;
+    color: var(--text-color);
+}
+.modal-header {
+    display: flex;
+    justify-content: flex-end;
+  }
+.submit-comment-btn {
+    background-color: var(--button-bg-color);
+    color: var(--button-text-color);
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.submit-comment-btn:hover {
+    background-color: darken(var(--button-bg-color), 10%);
+}
+
+.loader {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+
+.loader img {
+    width: 30px; /* Adjust loader size */
+    height: 30px;
+}
+
+/* Custom scrollbar for modal body */
+.modal-body::-webkit-scrollbar {
+    width: 8px;
+}
+
+.modal-body::-webkit-scrollbar-thumb {
+    background: var(--primary-color);
+    border-radius: 4px;
+}
+
+.modal-body::-webkit-scrollbar-track {
+    background: var(--bg-color);
+}
+
+.modal-body {
+    padding: 15px;
+    height: 300px;
+    overflow-y: auto;
+    position: relative; /* Necessary for absolute positioned loader */
+}
+/* Loading skeleton styles */
+
+.loading-comment-item {
+    display: flex;
+    
+    margin-bottom: 10px;
+}
+
+.loading-avatar {
+    width: 45px;
+    height: 40px;
+    border-radius: 50%;
+    background: #ccc;
+    margin-right: 10px;
+    animation: pulse 1.5s infinite ease-in-out;
+}
+.loading-name{
+    width: 30%;
+
+}
+
+
+.loading-details {
+    width: 97%;
+    margin-bottom: 10px;
+}
+
+.loading-line {
+    height: 10px;
+    background: #eee;
+    margin-bottom: 5px;
+    border-radius: 5px;
+    animation: pulse 1.5s infinite ease-in-out;
+}
+@keyframes pulse {
+    0% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.5;
+    }
+    100% {
+        opacity: 1;
+    }
+}

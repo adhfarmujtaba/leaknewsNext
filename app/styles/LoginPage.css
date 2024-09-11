@@ -1,0 +1,143 @@
+/* Define custom colors, gradients, and shadow */
+:root {
+  --custom-primary-color: #4e54c8;
+  --custom-secondary-color: #8f94fb;
+  --custom-background-gradient: linear-gradient(135deg, var(--custom-primary-color) 0%, var(--custom-secondary-color) 100%);
+  --custom-text-color: #ffffff;
+  --custom-input-background: rgba(255, 255, 255, 0.2);
+  --custom-input-border-color: rgba(255, 255, 255, 0.4);
+  --custom-button-gradient: linear-gradient(135deg, var(--custom-primary-color), var(--custom-secondary-color));
+  --custom-button-hover-color: #a1a6fc; /* Calculated using lighten() function */
+  --custom-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Import font for a modern look */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap');
+
+.login-page * {
+  box-sizing: border-box;
+  font-family: 'Roboto', sans-serif;
+}
+
+.login-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 90vh;
+  background: var(--custom-background-gradient), url('https://blog.tourismofkashmir.com/login_png/login.png');
+  background-size: cover;
+  background-position: center;
+  padding: 20px;
+}
+
+.login-page .back-arrow {
+  position: absolute;
+  top: 40px;
+  left: 20px;
+  color: var(--custom-secondary-color);
+  cursor: pointer;
+  font-size: 24px;
+  transition: transform 0.2s;
+}
+
+.login-page .back-arrow:hover {
+  transform: scale(1.2);
+}
+
+.login-page .login-form {
+  background-color: rgba(3, 3, 3, 0.25);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  padding: 50px;
+  width: 100%;
+  max-width: 450px;
+  box-shadow: var(--custom-shadow);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.login-page .login-form:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.25);
+}
+
+.login-page .login-form h2 {
+  color: var(--custom-text-color);
+  margin-bottom: 30px;
+  text-align: center;
+  font-weight: 500;
+}
+
+.login-page .login-form .input-wrapper {
+  position: relative;
+  margin-bottom: 30px;
+}
+
+.login-page .login-form .input-wrapper svg {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 15px;
+  color: var(--custom-text-color);
+}
+
+.login-page .login-form .input-wrapper input {
+  width: 100%;
+  background: var(--custom-input-background);
+  border: 1px solid var(--custom-input-border-color);
+  border-radius: 10px;
+  padding: 15px 15px 15px 45px;
+  color: var(--custom-text-color);
+  font-size: 16px;
+  transition: background-color 0.3s;
+}
+
+.login-page .login-form .input-wrapper input:focus {
+  background-color: rgba(255, 255, 255, 0.3);
+  border-color: var(--custom-secondary-color);
+}
+
+.login-page .login-form .input-wrapper input::placeholder {
+  color: #f3f3f3;
+}
+
+.login-page .login-form .login-button {
+  width: 100%;
+  padding: 15px;
+  border: none;
+  border-radius: 10px;
+  background: var(--custom-button-gradient);
+  color: var(--custom-text-color);
+  cursor: pointer;
+  font-weight: 500;
+  transition: background 0.3s, transform 0.2s;
+}
+
+.login-page .login-form .login-button:hover {
+  background: var(--custom-button-hover-color);
+  transform: translateY(-5px);
+}
+
+.login-page .login-form .login-button:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.login-page .login-form .login-help {
+  margin-top: 30px;
+  text-align: center;
+}
+
+.login-page .login-form .login-help p {
+  color: var(--custom-text-color);
+  margin: 5px 0;
+}
+
+.login-page .login-form .login-help p a {
+  color: #ccc;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.login-page .login-form .login-help p a:hover {
+  color: var(--custom-button-hover-color);
+}

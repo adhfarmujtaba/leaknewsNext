@@ -1,0 +1,214 @@
+.notification-badge {
+    
+    position: absolute;
+    top: 5px;
+    right: 74px;
+    padding: 2.5px 5.5px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #6a11cb, #2575fc);
+    color: #FFFFFF;
+    font-size: 12px;
+    font-weight: 600;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s ease;
+  
+  }
+  
+  
+  .notification-dropdown {
+  position: absolute;
+  top: 60px;
+  right: 15px;
+  background-color: #f5f5f5;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  border-radius: 16px;
+  width: 320px;
+  max-height: 400px;
+  overflow-y: auto;
+  z-index: 1050;
+  padding: 16px;
+  /* Animation */
+  animation: fadeIn 0.8s;
+  }
+  @keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+  }
+  
+  
+  #notificationDropdown::before {
+  content: '';
+  position: fixed;
+  top: 24px; /* Adjusted to ensure it's not cut off by overflow */
+  right: 107px;
+  width: 22px;
+  height: 20px;
+  background: #ffffff;
+  transform: rotate(0deg) translate(50%, 50%);
+  box-shadow: -2px -2px 5px rgba(0, 0, 0, 0.1);
+  border-radius: 0px;
+  border-top-right-radius: 11px;
+      border-top-left-radius: 11px;
+  
+  
+  
+  border-top: 5px solid #333;
+  z-index: -1;
+  }
+  
+  .notification-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  }
+  
+  .notification-item {
+  display: flex;
+  align-items: center;
+  padding: 12px;
+  border-radius: 12px;
+  margin-bottom: 8px;
+  background-color: #ffffff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+  transition: background-color 0.3s ease;
+  }
+  
+  
+  
+  
+  .notification-item:hover {
+  background-color: #f0f0f0;
+  }
+  
+  .notification-avatar {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  margin-right: 5px;
+  object-fit: cover;
+  }
+  
+  .notification-info {
+  flex-grow: 1;
+  }
+  
+  .notification-username {
+  font-size: 12px;
+  font-weight: bold;
+  color: #333333;
+  margin-right: 4px;
+  margin-bottom: 4px;
+  }
+  
+  .notification-message,
+  .notification-date {
+  font-size: 12px;
+  color: #666666;
+  }
+  
+  .notification-date {
+  text-align: right;
+  font-style: italic;
+  }
+  .notification-item {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  }
+  
+  .notification-user {
+  display: flex;
+  align-items: center;
+  }
+  /* Scrollbar Styles */
+  #notificationDropdown::-webkit-scrollbar {
+  width: 8px;
+  }
+  
+  #notificationDropdown::-webkit-scrollbar-thumb {
+  background-color: #cccccc;
+  border-radius: 4px;
+  }
+  
+  #notificationDropdown::-webkit-scrollbar-thumb:hover {
+  background-color: #999999;
+  }
+  
+  #notificationDropdown::-webkit-scrollbar-track {
+  background-color: #f5f5f5;
+  }
+  .notification-link{
+  text-decoration: none;
+  }
+  
+  .icon {
+  transition: transform 0.2s ease-in-out, color 0.2s ease;
+  }
+  
+  .icon:hover,
+  .icon:focus {
+  color: #4F46E5; /* Change the color on hover/focus */
+  transform: scale(1.1); /* Slightly enlarge the icon */
+  }
+  
+  .icon:active {
+  transform: scale(0.9); /* Slightly shrink the icon on click/tap */
+  }
+  
+  .notification-close {
+  cursor: pointer;
+  margin-left: auto; /* This pushes the icon to the far right */
+  padding: 5px; /* Adds some space around the icon for easier clicking */
+  }
+  /* Dark mode styles */
+  @media (prefers-color-scheme: dark) {
+    .notification-badge {
+        background: linear-gradient(135deg, #6a11cb, #2575fc); /* Dark gradient for badge background */
+        color: #fff; /* Light text color */
+        box-shadow: 0 2px 4px rgba(255, 255, 255, 0.08); /* Lighter shadow for contrast */
+    }
+  
+    .notification-dropdown {
+        background-color: #444; /* Dark background color for dropdown */
+        box-shadow: 0 8px 16px rgba(255, 255, 255, 0.1); /* Lighter shadow for contrast */
+    }
+  
+    .notification-item {
+        background-color: #555; /* Dark background color for notification items */
+        box-shadow: 0 4px 8px rgba(255, 255, 255, 0.05); /* Lighter shadow for contrast */
+        transition: background-color 0.3s ease; /* Smooth transition for background color */
+    }
+  
+    .notification-item:hover {
+        background-color: #666; /* Darkened background color on hover */
+    }
+  
+    .notification-username {
+        color: #fff; /* Light text color for username */
+    }
+    #notificationDropdown::before{
+      border-top: 5px solid #7e5cb5;
+    }
+    .notification-message,
+    .notification-date {
+        color: #ccc; /* Lighter text color */
+    }
+  
+    /* Scrollbar Styles */
+    #notificationDropdown::-webkit-scrollbar-thumb {
+        background-color: #999; /* Darker scrollbar thumb color */
+    }
+  
+    #notificationDropdown::-webkit-scrollbar-thumb:hover {
+        background-color: #777; /* Darker scrollbar thumb color on hover */
+    }
+  
+    #notificationDropdown::-webkit-scrollbar-track {
+        background-color: #333; /* Dark scrollbar track color */
+    }
+  }
+  

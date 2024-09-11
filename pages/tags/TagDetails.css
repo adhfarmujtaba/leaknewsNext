@@ -1,0 +1,177 @@
+body{
+    margin: 0;
+    padding: 0;
+    background-color: #f8f9fa;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+.tag-details-container {
+    font-family: Arial, sans-serif;
+    padding: 20px;
+    max-width: 800px; /* Limit the maximum width for better readability on larger screens */
+    margin: auto; /* Center the container on the page */
+}
+
+.tag-details-posts-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.tag-details-post-row {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 10px;
+    border-radius: 10px; /* More pronounced rounded corners for a modern look */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    transition: box-shadow 0.3s ease-in-out, transform 0.3s ease-in-out; /* Smooth transition for shadow and transform */
+    background-color: #fff; /* White background for each post row */
+}
+
+.tag-details-post-row:hover {
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2); /* Larger shadow on hover for a "lifted" effect */
+    transform: translateY(-5px); /* Slight upward shift on hover */
+}
+
+.tag-details-post-image {
+    width: 100px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 5px;
+    flex-shrink: 0; /* Prevent the image from shrinking */
+}
+
+.tag-details-post-title {
+    margin: 0;
+    font-size: 13px; /* Font size */
+    color: #333; /* Text color */
+    flex-grow: 1;
+    overflow: visible; /* Keep overflow visible */
+    text-overflow: clip; /* Clip the overflow without adding ellipsis */
+    line-height: 1.5; /* Adjust line height for better readability of wrapped text */
+    padding-right: 10px; /* Add some padding on the right for spacing */
+    word-wrap: break-word; /* Break the words to prevent overflow */
+    word-break: break-word; /* Ensures words break to prevent overflow - good for long words */
+    white-space: normal; /* Ensure whitespace is handled normally to allow wrapping */
+}
+
+
+.tag-details-loading {
+    text-align: center;
+    padding: 20px;
+    font-size: 18px;
+}
+
+.tag-details-image-container {
+    position: relative; /* Establish a positioning context for the overlay */
+    width: 100px; /* Match the width of the post-image */
+    height: 60px; /* Match the height of the post-image */
+}
+
+.tag-details-read-time-overlay {
+    position: absolute; /* Position the overlay within the image container */
+    bottom: 2px; /* Align the overlay to the bottom of the container */
+    left: 2px; /* Align the overlay to the left of the container */
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent overlay */
+    color: #ffffff; /* Text color */
+    padding: 2px 5px; /* Padding around the text */
+    font-size: 10px; /* Smaller font size for the overlay text */
+    border-radius: 3px;
+}
+
+.tag-details-post-link {
+    text-decoration: none; /* Removes underline from links */
+    color: inherit; /* Inherits the color from parent elements */
+    display: block; /* Makes the entire area clickable */
+}
+/* Tag Details Skeleton Loading */
+.tag-details-loading {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px;
+    max-width: 800px; /* Limit the maximum width for better readability on larger screens */
+    margin: auto; /* Center the container on the page */
+}
+
+.tag-details-skeleton-row {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 10px;
+    border-radius: 10px; /* More pronounced rounded corners for a modern look */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    transition: box-shadow 0.3s ease-in-out, transform 0.3s ease-in-out; /* Smooth transition for shadow and transform */
+    background-color: #fff; /* White background for each post row */
+}
+.tag-details-skeleton-line {
+    height: 30px; /* Adjust the height of the skeleton loading line */
+    width: 50%; /* Make the line span the full width */
+    background-color: #ccc; /* Background color for the skeleton loading line */
+    margin-bottom: 20px; /* Add some margin below the line */
+}
+.tag-details-skeleton-image {
+   
+    background-color: #ccc; /* Placeholder background color */
+    width: 100px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 5px;
+    flex-shrink: 0; /* Prevent the image from shrinking */
+}
+
+.tag-details-skeleton-title {
+    margin-top: 20px;
+    height: 20px;
+    width: 60%;
+    background-color: #ccc; /* Placeholder background color */
+    border-radius: 5px;
+    
+}
+    /* Loader CSS */
+    .infinite-scroller-loader {
+        display: block; /* Ensures the loader is a block-level element, taking up the full width of its container */
+        margin: 20px auto; /* Adds 20px margin to the top and bottom, and auto centers it horizontally */
+        width: 30px; /* Set the width of the loader to 50px or your desired size */
+        height: 30px; /* Set the height of the loader to match its width for a square aspect ratio */
+      }
+      
+      /* Dark mode styles */
+@media (prefers-color-scheme: dark) {
+    .tag-details-container {
+        background-color: #333; /* Dark background color */
+        color: #fff; /* Light text color */
+    }
+.tag-details-container h3{
+    color: #ffffff;
+}
+    .tag-details-post-row {
+        background-color: #444; /* Darker background color for post rows */
+        box-shadow: 0 5px 15px rgba(255,255,255,0.2); /* Lighter shadow for depth */
+    }
+
+    .tag-details-post-row:hover {
+        box-shadow: 0 7px 20px rgba(255,255,255,0.2); /* Lighter shadow on hover */
+    }
+
+  
+
+    /* Skeleton loading styles */
+    .tag-details-skeleton-row {
+        background-color: #444; /* Darker background color for skeleton loading rows */
+        box-shadow: 0 5px 15px rgba(255,255,255,0.2); /* Lighter shadow for depth */
+    }
+
+    .tag-details-skeleton-line {
+        background-color: #555; /* Darker background color for skeleton loading lines */
+    }
+
+    .tag-details-skeleton-image,
+    .tag-details-skeleton-title {
+        background-color: #555; /* Darker background color for skeleton loading elements */
+    }
+}
+.tag-details-post-link {
+    text-decoration: none;
+    color: inherit; /* Ensures the link color matches the surrounding text */
+}

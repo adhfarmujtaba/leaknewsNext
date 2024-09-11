@@ -1,0 +1,96 @@
+/* Define reusable colors and gradients */
+:root {
+    --register-primary-color: #6c63ff; /* A pleasant primary color */
+    --register-secondary-color: #ff6584; /* A contrasting secondary color for buttons and links */
+    --register-background-gradient: linear-gradient(to right, #6c63ff, #ff6584); /* A vibrant background gradient */
+    --register-text-color: #ffffff;
+    --register-input-background: rgba(255, 255, 255, 0.2);
+    --register-input-border-color: rgba(255, 255, 255, 0.4);
+    --register-button-hover-color: darken(var(--register-primary-color), 10%);
+}
+
+/* Register page styles */
+.register-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 90vh;
+    background: var(--register-background-gradient);
+    padding: 20px;
+}
+
+.register-page .back-arrow {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    color: black;
+    cursor: pointer;
+    font-size: 28px;
+}
+
+.register-page .register-form {
+    background-color: rgba(71, 71, 71, 0.642);
+    backdrop-filter: blur(5px);
+    border-radius: 15px;
+    padding: 40px;
+    width: 100%;
+    max-width: 450px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+}
+
+.register-page .register-form h2 {
+    color: var(--register-text-color);
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.register-page .register-form .input-wrapper {
+    display: flex;
+    align-items: center;
+    background: var(--register-input-background);
+    border: 1px solid var(--register-input-border-color);
+    border-radius: 8px;
+    margin-bottom: 15px;
+    padding: 10px;
+}
+
+.register-page .register-form .input-wrapper svg {
+    margin-right: 10px;
+    color: var(--register-text-color);
+}
+
+.register-page .register-form .input-wrapper input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: var(--register-text-color);
+}
+
+.register-page .register-form .input-wrapper input::placeholder {
+    color: var(--register-text-color);
+}
+
+.register-page .register-form button#register_btn {
+    width: 100%;
+    background: var(--register-secondary-color);
+    border: none;
+    padding: 12px;
+    border-radius: 8px;
+    color: var(--register-text-color);
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.register-page .register-form button#register_btn:hover {
+    background-color: var(--register-button-hover-color);
+}
+
+.register-page .register-form .link {
+    color: var(--register-secondary-color);
+    text-decoration: none;
+}
+
+.register-page .register-form .link:hover {
+    text-decoration: underline;
+}

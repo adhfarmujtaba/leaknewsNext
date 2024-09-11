@@ -1,0 +1,569 @@
+/* NewsDetail.css - Enhanced for a More Professional Look */
+@import url('https://fonts.googleapis.com/css?family=Raleway&display=swap');
+
+body{
+    margin: 0;
+    padding: 0;
+}
+.container_post {
+    font-family: 'Raleway', sans-serif;
+    line-height: 1.5;
+    font-size: 1rem;
+}
+
+
+.container_post {
+    max-width: 800px;
+    
+    border-radius: 8px;
+    background-color: #fff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Soft shadow for depth and professionalism */
+}
+.card-body{
+    padding: 4px;
+}
+
+.card-title {
+    color: #333;
+    font-size: 25px;
+    margin-bottom: 20px;
+    text-align: center; /* Center align the title for focus and impact */
+}
+
+.image-container {
+    text-align: center; /* Ensures images are centered, aligning with the professional layout */
+}
+
+.news-image {
+    max-width: 100%;
+    height: auto;
+    border-radius: 4px; /* Slightly rounded corners for a soft, modern look */
+}
+
+.content_post h3{
+    padding-right: 10px;
+    padding-left: 10px;
+}
+.content_post p{
+    font-size: 1rem;
+    color: #666;
+    line-height: 1.5;
+    padding-right: 10px;
+    padding-left: 10px;
+    text-align: justify;
+}
+/* Enhanced link styles for professionalism */
+.content_post a {
+    text-decoration: none; /* Removes underline by default for a cleaner look */
+    color: #0056b3; /* Professional shade of blue */
+    font-weight: 500; /* Medium weight for better readability */
+}
+.content_post img{
+    width: 100%;
+}
+.content_post a:hover {
+    text-decoration: underline; /* Adds underline on hover for clarity */
+    color: #004099; /* Slightly darker blue on hover for emphasis */
+}
+
+/* Post metadata styling for a polished look */
+.post-meta {
+    margin-bottom: 10px; /* Adequate space between the metadata and title */
+    color: #777; /* Subtle, professional color for metadata */
+    font-size: 0.9rem; /* Appropriately smaller font size for metadata */
+    
+}
+
+.post-meta span {
+    margin-right: 20px; /* Consistent space between metadata items */
+}
+.news-detail-skeleton-wrapper {
+    max-width: 800px;
+    margin: 20px auto;
+}
+
+.news-detail-skeleton-image {
+    width: 100%;
+    height: 200px;
+    background-color: #ccc;
+    animation: news-detail-loading 1.5s infinite;
+}
+
+.news-detail-skeleton-title {
+    margin-top: 10px;
+    height: 20px;
+    width: 60%;
+    background-color: #ccc;
+    animation: news-detail-loading 1.5s infinite;
+}
+
+.news-detail-skeleton-meta {
+    margin-top: 10px;
+    height: 15px;
+    width: 40%;
+    background-color: #ccc;
+    animation: news-detail-loading 1.5s infinite;
+}
+
+.news-detail-skeleton-content {
+    margin-top: 10px;
+    height: 700px;
+    background-color: #ccc;
+    animation: news-detail-loading 1.5s infinite;
+}
+/*
+@keyframes news-detail-loading {
+    0% {
+        background-color: #e0e0e0;
+    }
+    50% {
+        background-color: #f5f5f5;
+    }
+    100% {
+        background-color: #e0e0e0;
+    }
+}
+
+*/
+.tags-div{
+  padding-top: 20px;
+  padding-bottom: 50px;
+}
+.post-tags {
+    display: flex;
+    
+    flex-wrap: nowrap;
+    margin-top: 20px;
+    margin-bottom: 50px;
+    gap: 4px;
+    align-items: center;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+    scrollbar-color: #0056b3 #e1e1e1;
+}
+
+/* Styles for the scrollbar for Chrome, Edge, and Safari */
+.post-tags::-webkit-scrollbar {
+    height: 6px;
+}
+
+.post-tags::-webkit-scrollbar-track {
+    background: #e1e1e1;
+}
+
+.post-tags::-webkit-scrollbar-thumb {
+    background-color: #0056b3;
+    border-radius: 20px;
+    border: 2px solid #e1e1e1;
+}
+
+.tag {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #e1e1e1;
+    color: #2d2222;
+    padding: 8px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-decoration: none;
+    flex-shrink: 0;
+    margin-right: 10px; /* Add margin between tags */
+    white-space: nowrap; /* Prevent text wrapping */
+}
+
+
+.tag:last-child {
+    margin-right: 0; /* Remove margin from the last tag */
+}
+
+.tag:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    color: white;
+}
+.actions {
+    position: fixed;
+    right: 10px; /* Adjusted for better spacing from the edge */
+    bottom: 20px;
+    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius:10px;
+    
+    
+    transition: opacity 0.5s ease; /* Smoothly transition the opacity */
+    opacity: 1; /* Start fully visible */
+    backdrop-filter: blur(10px); /* Soft background blur for a modern look */
+}
+
+.action-item {
+    display: flex;
+    background: #eee;
+    text-decoration:none;
+    align-items: center;
+    justify-content: center;
+    width: 48px; /* Slightly larger for better touch targets */
+    height: 48px;
+    margin: 8px 0; /* More space between buttons */
+    border-color: #333;
+    font-size: 20px; /* Larger icons */
+    font-weight: bold;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2); /* Soft shadow for depth */
+    border: none; /* Removing borders for a cleaner look */
+}
+
+.action-item:hover {
+    background-color: #f0f0f0; /* Light background color on hover */
+}
+
+/* .action-item svg {
+   
+    color: #007bff; 
+    transition: color 0.3s ease;
+} */
+
+.action-item:hover svg {
+    color: #0056b3; /* Icon color on hover */
+}
+@keyframes heartBeat {
+    0% {
+      transform: scale(1);
+    }
+    25% {
+      transform: scale(1.3);
+    }
+    50% {
+      transform: scale(1);
+    }
+    75% {
+      transform: scale(1.3);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+  
+  .heartBeatAnimation {
+    animation: heartBeat 0.5s;
+  }
+ /* newsDetail.css */
+
+ .related-posts {
+    margin-top: 50px;
+    
+  }
+  
+  .related-posts h2 {
+    font-size: 15px;
+    margin-bottom: 10px;
+    color: #777;
+  }
+  
+  .related-posts-container {
+    overflow-x: auto; /* Enable horizontal scrolling */
+    display: flex;
+    flex-wrap: nowrap; /* Ensure flex items stay in a single row */
+    padding-bottom: 20px; /* Add padding to bottom for space to scroll */
+  }
+  
+  .related-post-card {
+    flex: 0 0 auto; /* Ensure cards don't grow to fill the container */
+    width: 200px; /* Set fixed width for each card */
+    height: 150px;
+    margin-right: 20px; /* Add spacing between cards */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add shadow for depth */
+    border-radius: 10px;
+    overflow: hidden; /* Hide overflow content */
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out; /* Add transition effect */
+  }
+  
+  .related-post-card:hover {
+    transform: translateY(-5px); /* Lift card on hover */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1); /* Increase shadow on hover */
+  }
+  
+  .related-post-card a {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+  }
+ 
+  .related-post-card img {
+    width: 100%;
+    height: 90px; /* Adjust height as needed */
+    object-fit: cover; /* Maintain aspect ratio */
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+  }
+  
+  .related-post-card .post-details {
+    padding-left: 4px;
+  }
+  
+  .related-post-card .post-title {
+    font-size: 10px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    line-height: 1.3;
+  }
+  
+ 
+  /* Hide scrollbar on smaller screens */
+@media screen and (max-width: 768px) {
+    .related-posts-container , .post-tags{
+      overflow-x: scroll;
+      scrollbar-width: none; /* Hide scrollbar for Firefox */
+      -ms-overflow-style: none; /* Hide scrollbar for IE and Edge */
+    }
+  
+    .related-posts-container::-webkit-scrollbar, .post-tags::-webkit-scrollbar {
+      display: none; /* Hide scrollbar for Webkit browsers */
+    }
+  }
+
+.you-might-like {
+    padding: 10px;
+    max-width: 800px;
+    margin: 20px auto;
+   
+}
+
+.top-viewed-posts-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.top-viewed-post-card {
+    display: flex;
+    align-items: center;
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.top-viewed-post-card a {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: inherit;
+    width: 100%;
+    padding: 10px;
+}
+.image-container {
+  position: relative;
+ 
+}
+
+
+.top-viewed-post-image {
+    width: 100px;
+    height: 80px;
+    object-fit: cover;
+    margin-right: 15px;
+    border-radius: 4px;
+}
+
+.text-container { /* New class for the text container */
+    display: flex;
+    flex-direction: column;
+}
+
+.top-viewed-post-title {
+    font-size: 14px;
+    font-weight: 500;
+    margin: 0 0 5px 0; /* Adjusted margin to add space below the title */
+    
+    overflow: hidden;
+    overflow-wrap: break-word; /* Preferred for breaking long words to prevent overflow */
+    word-break: break-all;
+}
+
+.top-viewed-post-category {
+    font-size: 14px;
+    color: #666;
+    margin: 0; /* Remove margin to avoid extra spacing */
+}
+.read-time-overlay {
+
+    position: absolute; /* Position the overlay within the image container */
+    bottom: 7px; /* Align the overlay to the bottom of the container */
+    right: 20px; /* Align the overlay to the left of the container */
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent overlay */
+    color: #ffffff; /* Text color */
+    padding: 2px 5px; /* Padding around the text */
+    font-size: 10px; /* Smaller font size for the overlay text */
+    border-radius: 3px;
+
+}
+
+  .related_read-time-overlay{
+    position: absolute; /* Position the overlay within the image container */
+    top: 7px; /* Align the overlay to the bottom of the container */
+    right: 5px; /* Align the overlay to the left of the container */
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent overlay */
+    color: #ffffff; /* Text color */
+    padding: 2px 5px; /* Padding around the text */
+    font-size: 10px; /* Smaller font size for the overlay text */
+    border-radius: 3px;
+  }
+
+  .reading-progress-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 5px;
+    background-color: blue; /* Or any color you prefer */
+    z-index: 99; /* Ensure it's above other content */
+}
+/* Backdrop styles */
+.modal-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent backdrop */
+    z-index: 999; /* Ensure it's below the modal but above other content */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  /* Modal styles */
+  .share-options-modal {
+    width: 80%; /* Responsive width */
+    max-width: 500px; /* Max-width to prevent it from being too wide on large screens */
+    background: #ffffff;
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column; /* Stack children vertically */
+    align-items: center; /* Center children horizontally */
+    gap: 20px;
+    animation: scaleIn 0.3s ease-in-out; /* Animation for scaling in */
+  }
+  
+  @keyframes scaleIn {
+    from {
+      transform: scale(0.8);
+      opacity: 0;
+    }
+    to {
+      transform: scale(1);
+      opacity: 1;
+    }
+  }
+  
+  .share-option {
+    width: 100%; /* Make buttons full width */
+    text-align: center; /* Center the icon and text */
+    padding: 10px 20px; /* Padding for touch friendliness */
+    border-radius: 10px; /* Rounded corners for the buttons */
+    background-color: #f0f0f0; /* Light background for each option */
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.2s; /* Smooth background color and scale transition */
+  }
+  
+  .share-option:hover {
+    background-color: #e0e0e0; /* Darken button on hover */
+    transform: translateY(-3px); /* Lift the button up slightly */
+  }
+  
+  .share-option:not(:last-child) {
+    margin-bottom: 15px; /* Space between buttons, except for the last one */
+  }
+  
+  .share-option-icon {
+    margin-right: 8px; /* Space between icon and text */
+  }
+  /* Dark mode styles */
+@media (prefers-color-scheme: dark) {
+  
+
+    .container_post {
+        background-color: #333; /* Dark container background */
+        color: #fff; /* Light text color */
+    }
+ /* Share options modal */
+ .share-options-modal {
+    background-color: #444; /* Dark background for modal */
+    color: #fff; /* Light text color */
+}
+.container_post a {
+    color: #eda5a5;
+}
+
+.share-option {
+    background-color: #555; /* Dark background for share option buttons */
+    color: #fff; /* Light text color */
+}
+
+.share-option:hover {
+    background-color: #666; /* Darkened background on hover */
+}
+    /* Category tags */
+    .post-tags .tag {
+        background-color: #555; /* Dark tag background */
+        color: #ccc; /* Light tag text color */
+    }
+
+    /* Related posts */
+    .related-posts {
+        background-color: #333; /* Dark background for related posts section */
+    }
+    .container_post h5 {
+        color: #ccc;
+    }
+   
+    .related-posts h2 {
+        color: #ccc;
+    }
+  .top-viewed-post-category{
+    color: #c0a8a8;
+  }
+    .related-post-card {
+        background-color: #444; /* Dark background for related post cards */
+    }
+  .action-item{
+    color: #000;
+  }
+    .related-post-card .post-title {
+        color: #fff; /* Light title color */
+    }
+
+    /* You might like section */
+    .you-might-like {
+        background-color: #333; /* Dark background for "you might like" section */
+    }
+.you-might-like h2{
+    color:rgb(203, 203, 203);
+}
+    .top-viewed-posts-container {
+        background-color: #333; /* Dark background for top viewed posts container */
+    }
+
+    .top-viewed-post-card {
+        background-color: #444; /* Dark background for top viewed post cards */
+    }
+
+    .top-viewed-post-title {
+        color: #fff; /* Light title color */
+    }
+
+    /* Adjust other styles as needed for dark mode */
+    /* ... */
+}
