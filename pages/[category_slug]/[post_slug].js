@@ -288,12 +288,12 @@ const PostPage = () => {
   return (
     <>
       <Head>
-        <title>{post.title}</title>
+      <title>{post.title}</title>
         <meta name="description" content={post.meta_description} />
         <meta property="og:title" content={post.title} />
         <meta property="og:description" content={post.meta_description} />
         <meta property="og:image" content={post.image} />
-        <meta property="og:url" content={currentUrl} />
+        <meta property="og:url" content={typeof window !== 'undefined' ? window.location.href : ''} />
         <meta property="og:type" content="article" />
       </Head>
 
