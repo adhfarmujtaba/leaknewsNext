@@ -25,7 +25,7 @@ const LoginPage = () => {
         setIsLoading(true);
     
         try {
-            const response = await axios.post('http://blog.tourismofkashmir.com/apilogin.php', { username, password });
+            const response = await axios.post('https://blog.tourismofkashmir.com/apilogin.php', { username, password });
             
             if (response.data && response.data.user) {
                 localStorage.setItem('user', JSON.stringify(response.data.user));

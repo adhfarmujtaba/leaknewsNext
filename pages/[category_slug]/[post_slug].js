@@ -287,13 +287,25 @@ const PostPage = () => {
   return (
     <>
       <Head>
-        <title>{post.title}</title>
-        <meta name="description" content={post.meta_description} />
-        <meta property="og:title" content={post.title} />
-        <meta property="og:description" content={post.meta_description} />
-        <meta property="og:image" content={post.image} />
-        <meta property="og:url" content={currentUrl} />
-      </Head>
+      <title>{post.title}</title>
+      <meta name="description" content={post.meta_description} />
+      
+      {/* Open Graph Meta Tags */}
+      <meta property="og:title" content={post.title} />
+      <meta property="og:description" content={post.meta_description} />
+      <meta property="og:image" content={post.image} />
+      <meta property="og:url" content={currentUrl} />
+      <meta property="og:type" content="article" />
+      <meta property="og:site_name" content="Leak News" /> {/* Replace with your site name */}
+      <meta property="og:locale" content="en_US" /> {/* Replace with your site's locale */}
+
+      {/* Twitter Card Meta Tags (optional) */}
+      <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:title" content={post.title} />
+      <meta name="twitter:description" content={post.meta_description} />
+      <meta name="twitter:image" content={post.image} />
+      <meta name="twitter:url" content={currentUrl} />
+    </Head>
       
       <div className="container_post">
         <div className="card_post">
