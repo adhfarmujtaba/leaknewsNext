@@ -54,7 +54,7 @@ const CommentsModal = ({ isOpen, onClose, postId }) => {
         };
 
         try {
-            const response = await axios.post('http://blog.tourismofkashmir.com/api_comments.php', commentData);
+            const response = await axios.post('https://blog.tourismofkashmir.com/api_comments.php', commentData);
             fetchComments();
             setNewComment('');
             console.log(response.data.message);
@@ -80,7 +80,7 @@ const CommentsModal = ({ isOpen, onClose, postId }) => {
         const offset = comments.length;
         const limit = 10;
         try {
-            const response = await axios.get(`http://blog.tourismofkashmir.com/api_comments.php?post_id=${postId}&offset=${offset}&limit=${limit}`);
+            const response = await axios.get(`https://blog.tourismofkashmir.com/api_comments.php?post_id=${postId}&offset=${offset}&limit=${limit}`);
             setComments(prevComments => [...prevComments, ...response.data]);
         } catch (error) {
             console.error("There was an error fetching more comments:", error);

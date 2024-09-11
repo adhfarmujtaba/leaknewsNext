@@ -12,7 +12,7 @@ import Head from 'next/head';
 import '../../app/styles/posts.css';
 import CommentsModal from './CommentsModal';
 import { toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css'; // Import the CSS for react-toastify
+import 'react-toastify/dist/ReactToastify.css';
 
 const PostPage = () => {
   const [post, setPost] = useState(null);
@@ -21,7 +21,7 @@ const PostPage = () => {
   const [commentCount, setCommentCount] = useState(0);
   const [isBookmarked, setIsBookmarked] = useState(false);
   const [showShareOptions, setShowShareOptions] = useState(false);
-  const [showComments, setShowComments] = useState(false); // Added state variable
+  const [showComments, setShowComments] = useState(false);
   const [relatedPosts, setRelatedPosts] = useState([]);
   const [topViewedPosts, setTopViewedPosts] = useState([]);
 
@@ -147,24 +147,21 @@ const PostPage = () => {
       toast.error(`Error ${action}ing bookmark: ${error.message}`);
     }
   };
+
   useEffect(() => {
     const fetchRelatedPosts = async () => {
-        try {
-            if (post && post.category_name) {
-                console.log('Fetching related posts...');
-                const response = await axios.get(`https://blog.tourismofkashmir.com/related_api.php?related_posts=${post.category_name}&exclude_post_id=${post.id}`);
-                console.log('Related posts response:', response.data); // Debug: log the response
-                setRelatedPosts(response.data);
-                console.log('Related posts set:', response.data); // Debug: log the updated state
-            }
-        } catch (error) {
-            console.error("Error fetching related posts:", error);
+      try {
+        if (post && post.category_name) {
+          const response = await axios.get(`https://blog.tourismofkashmir.com/related_api.php?related_posts=${post.category_name}&exclude_post_id=${post.id}`);
+          setRelatedPosts(response.data);
         }
+      } catch (error) {
+        console.error("Error fetching related posts:", error);
+      }
     };
 
     fetchRelatedPosts();
-}, [post]);
-
+  }, [post]);
 
   useEffect(() => {
     const updateViews = async () => {
@@ -194,20 +191,22 @@ const PostPage = () => {
 
     fetchCommentCount();
   }, [post]);
+
   useEffect(() => {
     const fetchTopViewedPosts = async () => {
-        try {
-            if (post) {
-                const response = await axios.get(`https://blog.tourismofkashmir.com/related_api.php?topviewpost=true&exclude_post_id=${post.id}`);
-                setTopViewedPosts(response.data);
-            }
-        } catch (error) {
-            console.error("Error fetching top viewed posts:", error);
+      try {
+        if (post) {
+          const response = await axios.get(`https://blog.tourismofkashmir.com/related_api.php?topviewpost=true&exclude_post_id=${post.id}`);
+          setTopViewedPosts(response.data);
         }
+      } catch (error) {
+        console.error("Error fetching top viewed posts:", error);
+      }
     };
 
     fetchTopViewedPosts();
-}, [post]);
+  }, [post]);
+
   const toggleShareOptions = () => {
     setShowShareOptions(!showShareOptions);
   };
@@ -237,9 +236,9 @@ const PostPage = () => {
 
   const copyLinkToClipboard = () => {
     navigator.clipboard.writeText(window.location.href)
-        .then(() => toast.success("Link copied to clipboard!"))
-        .catch((err) => console.error("Could not copy link: ", err));
-};
+      .then(() => toast.success("Link copied to clipboard!"))
+      .catch((err) => console.error("Could not copy link: ", err));
+  };
 
   if (!post) {
     return (
@@ -275,42 +274,29 @@ const PostPage = () => {
   const toggleCommentsModal = () => {
     setShowComments(prevState => !prevState);
   };
+
   // Helper function to truncate titles that are too long
   const truncateTitle = (title, maxLength = 50) => {
-      if (title.length > maxLength) {
-          return `${title.substring(0, maxLength)}...`; // Truncate and append ellipsis
-      }
-      return title; // Return the original title if it's short enough
+    if (title.length > maxLength) {
+      return `${title.substring(0, maxLength)}...`; // Truncate and append ellipsis
+    }
+    return title; // Return the original title if it's short enough
   };
+
   const currentUrl = typeof window !== 'undefined' ? window.location.href : '';
 
   return (
     <>
       <Head>
-      <title>{post.title}</title>
-      <meta name="description" content={post.meta_description} />
-      
-
-      {/* Open Graph Meta Tags */}
-      <title>{post ? post.title : 'Post Not Found'}</title>
-        <meta name="description" content={post ? post.meta_description : 'Post not found'} />
-        <meta property="og:title" content={post ? post.title : 'Post Not Found'} />
-        <meta property="og:description" content={post ? post.meta_description : 'Post not found'} />
+        <title>{post.title}</title>
+        <meta name="description" content={post.meta_description} />
+        <meta property="og:title" content={post.title} />
+        <meta property="og:description" content={post.meta_description} />
         <meta property="og:image" content={post.image} />
         <meta property="og:url" content={currentUrl} />
         <meta property="og:type" content="article" />
-        <meta property="og:site_name" content="Your Website Name" />
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content={post ? post.title : 'Post Not Found'} />
-        <meta name="twitter:description" content={post ? post.meta_description : 'Post not found'} />
-        <meta name="twitter:image" content={post.image} />
-        <meta name="twitter:url" content={currentUrl} />
+      </Head>
 
-
-
-      
-    </Head>
-      
       <div className="container_post">
         <div className="card_post">
           <img src={post.image} className="card-img-top news-image" alt={post.title} />
@@ -324,45 +310,46 @@ const PostPage = () => {
             <div className="content_post" dangerouslySetInnerHTML={{ __html: post.content }} />
           </div>
         </div>
+
         {/* Related posts */}
-{relatedPosts.length > 0 && (
-    <div className="related-posts">
-        <h2>Also Read</h2>
-        <div className="related-posts-container">
-            {relatedPosts.map((relatedPost, index) => (
+        {relatedPosts.length > 0 && (
+          <div className="related-posts">
+            <h2>Also Read</h2>
+            <div className="related-posts-container">
+              {relatedPosts.map((relatedPost, index) => (
                 <div className="related-post-card" key={index}>
-                    <Link href={`/${post.category_name}/${relatedPost.slug}`}>
-                        <div className="image-container"> {/* Positioning context for overlay */}
-                            <img src={relatedPost.image} alt={relatedPost.title} />
-                            <div className="related_read-time-overlay">{relatedPost.read_time} min read</div> {/* Overlay with read time */}
-                        </div>
-                        <div className="post-details">
-                            <h3 className="post-title">{truncateTitle(relatedPost.title)}</h3>
-                            <p className="post-excerpt">{relatedPost.excerpt}</p>
-                        </div>
-                    </Link>
+                  <Link href={`/${post.category_name}/${relatedPost.slug}`}>
+                    <div className="image-container">
+                      <img src={relatedPost.image} alt={relatedPost.title} />
+                      <div className="related_read-time-overlay">{relatedPost.read_time} min read</div>
+                    </div>
+                    <div className="post-details">
+                      <h3 className="post-title">{truncateTitle(relatedPost.title)}</h3>
+                      <p className="post-excerpt">{relatedPost.excerpt}</p>
+                    </div>
+                  </Link>
                 </div>
-            ))}
-        </div>
-    </div>
-)}
+              ))}
+            </div>
+          </div>
+        )}
 
         <div className="post-category">
           <strong>Category:</strong> {post.category_name}
         </div>
         <div className='tags-div'>
-        {post.tag_slugs && (
-          <div className="post-tags">
-            <strong>Tags:</strong>
-            {post.tag_slugs.split(',').map((tagSlug, index) => (
-              <Link href={`/tags/${tagSlug}`} key={index} className="tag-link">
-                <span className="tag">
-                  {post.tag_names.split(',')[index].trim()}{index < post.tag_slugs.split(',').length - 1 ? ', ' : ''}
-                </span>
-              </Link>
-            ))}
-          </div>
-        )}
+          {post.tag_slugs && (
+            <div className="post-tags">
+              <strong>Tags:</strong>
+              {post.tag_slugs.split(',').map((tagSlug, index) => (
+                <Link href={`/tags/${tagSlug}`} key={index} className="tag-link">
+                  <span className="tag">
+                    {post.tag_names.split(',')[index].trim()}{index < post.tag_slugs.split(',').length - 1 ? ', ' : ''}
+                  </span>
+                </Link>
+              ))}
+            </div>
+          )}
         </div>
       </div>
 
@@ -402,28 +389,30 @@ const PostPage = () => {
           </div>
         </div>
       )}
+
       <CommentsModal isOpen={showComments} onClose={toggleCommentsModal} postId={post.id} />
+
       {topViewedPosts.length > 0 && (
-    <div className="you-might-like outside-container">
-        <h2>You Might Like</h2>
-        <div className="top-viewed-posts-container">
+        <div className="you-might-like outside-container">
+          <h2>You Might Like</h2>
+          <div className="top-viewed-posts-container">
             {topViewedPosts.map((topViewedPost, index) => (
-                <div className="top-viewed-post-card" key={index}>
-                    <Link href={`/${topViewedPost.category_slug}/${topViewedPost.slug}`} className="card-link">
-                        <div className="image-container"> {/* Wrap the image and read time overlay in a container */}
-                            <img src={topViewedPost.image} alt={topViewedPost.title} className="top-viewed-post-image" />
-                            <div className="read-time-overlay">{topViewedPost.read_time} min read</div>
-                        </div>
-                        <div className="text-container">
-                        <h3 className="top-viewed-post-title">{truncateTitle(topViewedPost.title)}</h3> {/* Use the truncateTitle function here */}
-                            <p className="top-viewed-post-category">{topViewedPost.category_name}</p>
-                        </div>
-                    </Link>
-                </div>
+              <div className="top-viewed-post-card" key={index}>
+                <Link href={`/${topViewedPost.category_slug}/${topViewedPost.slug}`} className="card-link">
+                  <div className="image-container">
+                    <img src={topViewedPost.image} alt={topViewedPost.title} className="top-viewed-post-image" />
+                    <div className="read-time-overlay">{topViewedPost.read_time} min read</div>
+                  </div>
+                  <div className="text-container">
+                    <h3 className="top-viewed-post-title">{truncateTitle(topViewedPost.title)}</h3>
+                    <p className="top-viewed-post-category">{topViewedPost.category_name}</p>
+                  </div>
+                </Link>
+              </div>
             ))}
+          </div>
         </div>
-    </div>
-)}
+      )}
     </>
   );
 };

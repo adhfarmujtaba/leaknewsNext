@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { fetchPosts } from '../app/services/api';
 import '../app/styles/home.css';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 // Utility Functions
 const truncateText = (text, wordLimit) => {
