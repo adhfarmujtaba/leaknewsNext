@@ -9,7 +9,6 @@ import { faHeart as farHeart, faBookmark as farBookmark, faCommentDots as farCom
 import { faFacebookF, faTwitter, faWhatsapp } from '@fortawesome/free-brands-svg-icons';
 import { faClipboard } from '@fortawesome/free-solid-svg-icons';
 import Head from 'next/head';
-import Image from 'next/image';
 import '../../app/styles/posts.css';
 import CommentsModal from './CommentsModal';
 import { toast } from 'react-toastify';
@@ -47,8 +46,6 @@ const PostPage = () => {
   useEffect(() => {
     const fetchLikes = async () => {
       try {
-        if (!post) return;
-
         const response = await axios.get(`https://blog.tourismofkashmir.com/api_likes?action=getLikeCount&post_id=${post.id}`);
         setLikeCount(response.data.like_count);
 
@@ -65,7 +62,9 @@ const PostPage = () => {
       }
     };
 
-    fetchLikes();
+    if (post) {
+      fetchLikes();
+    }
   }, [post, post_slug]);
 
   const toggleLike = async () => {
@@ -167,15 +166,15 @@ const PostPage = () => {
   useEffect(() => {
     const updateViews = async () => {
       try {
-        if (post) {
-          await axios.get(`https://blog.tourismofkashmir.com/apis.php?update_views=true&post_id=${post.id}`);
-        }
+        await axios.get(`https://blog.tourismofkashmir.com/apis.php?update_views=true&post_id=${post.id}`);
       } catch (error) {
         console.error("Error updating post views:", error);
       }
     };
 
-    updateViews();
+    if (post) {
+      updateViews();
+    }
   }, [post]);
 
   useEffect(() => {
@@ -300,24 +299,28 @@ const PostPage = () => {
   return (
     <>
       <Head>
-        <title>{post.title}</title>
-        <meta name="description" content={post.meta_description} />
-        <meta property="og:title" content={post.title} />
-        <meta property="og:description" content={post.meta_description} />
+      <title>{post.title}</title>
+      <title>{post ? post.title : 'Post Not Found'}</title>
+        <meta name="description" content={post ? post.meta_description : 'Post not found'} />
+        <meta property="og:title" content={post ? post.title : 'Post Not Found'} />
+        <meta property="og:description" content={post ? post.meta_description : 'Post not found'} />
         <meta property="og:image" content={imageUrl} />
         <meta property="og:url" content={postUrl} />
         <meta property="og:type" content="article" />
         <meta property="og:site_name" content="Your Website Name" />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content={post.title} />
-        <meta name="twitter:description" content={post.meta_description} />
+        <meta name="twitter:title" content={post ? post.title : 'Post Not Found'} />
+        <meta name="twitter:description" content={post ? post.meta_description : 'Post not found'} />
         <meta name="twitter:image" content={imageUrl} />
         <meta name="twitter:url" content={postUrl} />
+        <link rel="icon" href={imageUrl} type="image/x-icon" />
+
+       
       </Head>
 
       <div className="container_post">
         <div className="card_post">
-          <Image src={post.image} className="card-img-top news-image" alt={post.title} layout="responsive" width={1200} height={675} />
+          <img src={post.image} className="card-img-top news-image" alt={post.title} />
           <div className="card-body">
             <h5 className="card-title">{post.title}</h5>
             <p className="card-text post-meta">
@@ -338,7 +341,7 @@ const PostPage = () => {
                 <div className="related-post-card" key={index}>
                   <Link href={`/${post.category_name}/${relatedPost.slug}`}>
                     <div className="image-container">
-                      <Image src={relatedPost.image} alt={relatedPost.title} layout="responsive" width={400} height={225} />
+                      <img src={relatedPost.image} alt={relatedPost.title} />
                       <div className="related_read-time-overlay">{relatedPost.read_time} min read</div>
                     </div>
                     <div className="post-details">
@@ -418,7 +421,7 @@ const PostPage = () => {
               <div className="top-viewed-post-card" key={index}>
                 <Link href={`/${topViewedPost.category_slug}/${topViewedPost.slug}`} className="card-link">
                   <div className="image-container">
-                    <Image src={topViewedPost.image} alt={topViewedPost.title} className="top-viewed-post-image" layout="responsive" width={400} height={225} />
+                    <img src={topViewedPost.image} alt={topViewedPost.title} className="top-viewed-post-image" />
                     <div className="read-time-overlay">{topViewedPost.read_time} min read</div>
                   </div>
                   <div className="text-container">

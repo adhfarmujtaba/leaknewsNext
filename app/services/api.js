@@ -2,6 +2,7 @@
 import axios from 'axios';
 
 const API_BASE_URL = 'https://blog.tourismofkashmir.com/apis.php';
+const SITE_INFO_API_URL = 'https://blog.tourismofkashmir.com/site_info_api.php'; // Added new URL
 
 export const fetchPosts = async (page = 1) => {
   try {
@@ -13,7 +14,7 @@ export const fetchPosts = async (page = 1) => {
   }
 };
 
-export const fetchPostBySlug = async (postSlug) => { // Renamed function to fetchPostBySlug
+export const fetchPostBySlug = async (postSlug) => {
   try {
     const response = await axios.get(`${API_BASE_URL}?post_slug=${postSlug}`);
     return response.data;
@@ -23,5 +24,12 @@ export const fetchPostBySlug = async (postSlug) => { // Renamed function to fetc
   }
 };
 
-// Update other functions as needed
-
+export const fetchSiteInfo = async () => { // Added new function
+  try {
+    const response = await axios.get(SITE_INFO_API_URL);
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching site info:", error);
+    return null;
+  }
+};

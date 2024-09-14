@@ -15,11 +15,14 @@ const NotificationDropdown = ({ notifications, onDelete, onClose }) => {
                 {notifications.length > 0 ? (
                     notifications.map(notification => (
                         <li key={notification.id} className={`notification-item ${notification.is_read ? '' : 'unread'}`}>
-                            <Link href={notification.url} passHref>
-                                <a className="notification-link" onClick={(e) => {
-                                    e.stopPropagation();
-                                    handleNotificationClick();
-                                }}>
+                            <Link href={notification.url} legacyBehavior>
+                                <a 
+                                    className="notification-link" 
+                                    onClick={(e) => {
+                                        e.stopPropagation();
+                                        handleNotificationClick();
+                                    }}
+                                >
                                     <div className="notification-info">
                                         {/* Render username and avatar if available */}
                                         {notification.fromUsername && (

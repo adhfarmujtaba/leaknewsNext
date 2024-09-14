@@ -1,3 +1,4 @@
+import Head from 'next/head';
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
@@ -92,6 +93,11 @@ const CategoryPage = () => {
 
   return (
     <div className="category-list">
+      <Head>
+        <title>{category_slug ? `${category_slug} ` : 'Loading...'} </title>
+        <meta name="description" content={`Browse posts in the ${category_slug} category.`} />
+      </Head>
+
       {loading ? (
         <SkeletonLoader />
       ) : (
@@ -122,7 +128,7 @@ const CategoryPage = () => {
                       </div>
                     </div>
                   </Link>
-                  <div style={{ display: 'flex', alignItems: 'center', marginBottom:'5px' }}>
+                  <div style={{ display: 'flex', alignItems: 'center', marginBottom: '5px' }}>
                     <div style={{ textDecoration: 'none', color: 'inherit', display: 'flex', alignItems: 'center' }}>
                       <img
                         src={`https://blog.tourismofkashmir.com/${post.avatar}`}
@@ -130,7 +136,7 @@ const CategoryPage = () => {
                         className="avatar"
                         style={{ width: '30px', height: '30px', borderRadius: '50%', marginRight: '5px' }}
                       />
-                      <span className="username" >{post.username}</span>
+                      <span className="username">{post.username}</span>
                     </div>
                     <span className='views'>. {formatViews(post.views)} views</span>
                     <span className='date'>{formatDate(post.created_at)}</span>

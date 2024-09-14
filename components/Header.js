@@ -1,10 +1,12 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import Link from 'next/link';
-import { MdPerson as UserIcon, MdSearch as SearchIcon, MdNotifications as BellIcon } from 'react-icons/md';
+import { MdPerson as UserIcon, MdSearch as SearchIcon, MdNotifications as BellIcon, MdArrowDropDown as ArrowDropDownIcon } from 'react-icons/md';
 import { useRouter } from 'next/router';
 import UserDropdown from './UserDropdown';
 import SearchModal from './SearchModal';
+import { FaTag } from 'react-icons/fa';
 import NotificationDropdown from './NotificationDropdown';
+import categoryIcons from './categoryIcons'; // Import the category icons mapping
 import '../app/styles/header.css';
 
 const Header = () => {
@@ -20,15 +22,15 @@ const Header = () => {
   const [avatarUrl, setAvatarUrl] = useState(null);
   const [notifications, setNotifications] = useState([]);
   const [unreadNotificationCount, setUnreadNotificationCount] = useState(0);
+  const [categories, setCategories] = useState([]);
+  const [isCategoriesOpen, setIsCategoriesOpen] = useState(false);
   const router = useRouter();
 
   const handleScroll = useCallback(() => {
     const currentScrollY = window.scrollY;
-
     if (currentScrollY > 70) {
       setHeaderVisible(currentScrollY < lastScrollY);
     }
-
     setLastScrollY(currentScrollY);
   }, [lastScrollY]);
 
@@ -60,6 +62,24 @@ const Header = () => {
     };
   }, [router.events]);
 
+  useEffect(() => {
+    fetchCategories();
+  }, []);
+
+  const fetchCategories = async () => {
+    try {
+      const response = await fetch('https://blog.tourismofkashmir.com/api_get_categories.php');
+      const data = await response.json();
+      setCategories(data);
+    } catch (error) {
+      console.error('Error fetching categories:', error);
+    }
+  };
+
+  const toggleCategories = () => {
+    setIsCategoriesOpen(!isCategoriesOpen);
+  };
+
   const toggleUserDropdown = () => {
     setIsUserDropdownOpen(!isUserDropdownOpen);
   };
@@ -73,14 +93,12 @@ const Header = () => {
   };
 
   const deleteNotification = (notificationId) => {
-    console.debug('Deleting notification with ID:', notificationId);
     if (isLoggedIn && userId) {
-      fetch(`http://blog.tourismofkashmir.com/apinotification.php?delete_notification=true&user_id=${userId}&notification_id=${notificationId}`, {
+      fetch(`https://blog.tourismofkashmir.com/apinotification.php?delete_notification=true&user_id=${userId}&notification_id=${notificationId}`, {
         method: 'GET' 
       })
         .then(response => response.json())
         .then(data => {
-          console.debug('Notification deleted:', data);
           const updatedNotifications = notifications.filter(notification => notification.id !== notificationId);
           setNotifications(updatedNotifications);
           fetchUnreadNotificationCount();
@@ -93,12 +111,10 @@ const Header = () => {
 
   const fetchNotifications = useCallback(() => {
     if (userId) {
-      console.debug('Fetching notifications for user ID:', userId);
-      fetch(`http://blog.tourismofkashmir.com/apinotification.php?get_notifications&user_id=${userId}`)
+      fetch(`https://blog.tourismofkashmir.com/apinotification.php?get_notifications&user_id=${userId}`)
         .then(response => response.json())
         .then(data => {
           setNotifications(data);
-          console.debug('Fetched notifications:', data);
         })
         .catch(error => {
           console.error('Error fetching notifications:', error);
@@ -108,11 +124,10 @@ const Header = () => {
 
   const fetchUnreadNotificationCount = useCallback(() => {
     if (userId) {
-      fetch(`http://blog.tourismofkashmir.com/apinotification.php?get_notifications&user_id=${userId}&is_read=false`)
+      fetch(`https://blog.tourismofkashmir.com/apinotification.php?get_notifications&user_id=${userId}&is_read=false`)
         .then(response => response.json())
         .then(data => {
           setUnreadNotificationCount(data.length);
-          console.debug('Fetched unread notification count:', data.length);
         })
         .catch(error => {
           console.error('Error fetching unread notification count:', error);
@@ -126,7 +141,6 @@ const Header = () => {
       setIsLoggedIn(true);
       setUserId(user.id);
       setAvatarUrl(user.avatar);
-      console.debug('User logged in:', user);
     }
   }, []);
 
@@ -145,28 +159,23 @@ const Header = () => {
 
   useEffect(() => {
     const handleTouchOrScroll = (event) => {
-      // Check if the click occurred inside the dropdown or modal
       if (event.target.closest('.user-dropdown') || event.target.closest('.search-modal') || event.target.closest('.notification-dropdown')) {
         return;
       }
-  
-      // Close dropdowns and modals if click occurred outside
       setIsSearchModalOpen(false);
       setIsNotificationOpen(false);
       setIsUserDropdownOpen(false);
-     
     };
-  
+
     document.body.addEventListener('touchstart', handleTouchOrScroll);
     document.body.addEventListener('scroll', handleTouchOrScroll);
-  
+
     return () => {
       document.body.removeEventListener('touchstart', handleTouchOrScroll);
       document.body.removeEventListener('scroll', handleTouchOrScroll);
     };
   }, []);
-  
-  
+
   return (
     <header style={{ top: headerVisible ? '0' : '-100px', transition: 'top 0.3s' }}>
       <div className="custom-header">
@@ -188,11 +197,11 @@ const Header = () => {
             <BellIcon />
             {unreadNotificationCount > 0 && <span className="notification-badge">{unreadNotificationCount}</span>}
           </div>
-         
+
           <div className="icon search-icon" onClick={toggleSearchModal}>
             <SearchIcon />
           </div>
-          
+
           <div className="icon user-icon" onClick={toggleUserDropdown}>
             <UserIcon />
           </div>
@@ -202,8 +211,26 @@ const Header = () => {
         </div>
 
         <div className={`side-menu ${isMenuOpen ? 'open' : 'closed'}`}>
-          <Link href="/about">About Us</Link>
+          <Link href="/">Home</Link>
           <Link href="/contact">Contact</Link>
+          <div className="categories-menu">
+            <button onClick={toggleCategories} className="categories-toggle">
+              Categories <ArrowDropDownIcon className={`dropdown-icon ${isCategoriesOpen ? 'open' : ''}`} />
+            </button>
+            <div className={`categories-list ${isCategoriesOpen ? 'open' : 'closed'}`}>
+              {categories.map(category => {
+                const Icon = categoryIcons[category.name] || FaTag; // Fallback to a default icon if not found
+                return (
+                  <Link key={category.id} href={`/${category.slug}`} passHref>
+                    <div className="category-item">
+                      <Icon className="category-icon" />
+                      {category.name}
+                    </div>
+                  </Link>
+                );
+              })}
+            </div>
+          </div>
         </div>
       </div>
 
