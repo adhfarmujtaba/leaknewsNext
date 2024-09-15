@@ -4,7 +4,6 @@
 body{
     margin: 0;
     padding: 0;
-    display: flex;
     
 }
 .container_post {
@@ -13,15 +12,36 @@ body{
     font-size: 1rem;
    
 }
-
+/* Default styles */
+/* .container_post {
+  max-width: 800px;
+  
+  border-radius: 8px;
+  background-color: #fff;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+} */
 
 .container_post {
-    max-width: 800px;
-    
-    border-radius: 8px;
-    background-color: #fff;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Soft shadow for depth and professionalism */
+  font-family: 'Raleway', sans-serif;
+  line-height: 1.5;
+  font-size: 1rem;
+  max-width: 800px;
+  border-radius: 8px;
+  background-color: #fff;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin: 0 auto; /* Default centering */
+  
 }
+
+/* Media query for centering between 992px and 1200px */
+@media (min-width: 992px) and (max-width: 1200px) {
+  .container_post {
+      width: 90%; /* Adjust width as needed */
+      margin: 0 auto; /* Center horizontally */
+  }
+}
+
+
 .card-body{
     padding: 4px;
 }

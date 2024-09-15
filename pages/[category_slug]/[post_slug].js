@@ -437,5 +437,40 @@ const PostPage = () => {
     </>
   );
 };
+// Fetch post data on the server-side
+export const getServerSideProps = async (context) => {
+  const { post_slug } = context.params;
+
+  try {
+    console.log(`Fetching post with slug: ${post_slug}`);
+    
+    const post = await fetchPostBySlug(post_slug);
+    
+    // If post not found, return a 404 response
+    if (!post) {
+      console.log(`Post not found for slug: ${post_slug}`);
+      return {
+        notFound: true,
+      };
+    }
+
+    // Debugging: log the fetched post data
+    console.log("Fetched post data:", post);
+
+    return {
+      props: {
+        post,
+      },
+    };
+
+  } catch (error) {
+    // Log the error for debugging
+    console.error("Error in getServerSideProps:", error);
+    return {
+      notFound: true,
+    };
+  }
+};
+
 
 export default PostPage;
